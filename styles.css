@@ -25,6 +25,8 @@ html { scroll-behavior: smooth; }
 body { margin: 0; background: #fff; color: var(--ink); }
 button, summary { font: inherit; }
 a { color: inherit; }
+.page-link { color: var(--blue); text-decoration: none; font-weight: 700; }
+.page-link:hover { text-decoration: underline; }
 
 .site-header {
   min-height: 64px;

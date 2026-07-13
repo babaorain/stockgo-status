@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'">
+  <meta name="description" content="StockGO 今日台股盤勢、隔夜環境與上一完成盤結構分析。">
+  <title>StockGO 今日盤勢</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="market.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="回到系統總覽">StockGO <span>今日盤勢</span></a>
+    <nav aria-label="頁面導覽">
+      <a href="index.html">系統狀態</a>
+      <a class="active" href="#overview">今日盤勢</a>
+      <a href="#structure">市場結構</a>
+      <a href="#sectors">產業</a>
+    </nav>
+    <div class="header-meta">
+      <a class="page-link" href="index.html">系統狀態</a>
+      <span id="market-updated-at">最後更新：讀取中</span>
+      <button id="market-reload" type="button" aria-label="重新整理今日盤勢">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5M6.1 9A7 7 0 0 1 18.5 6.5L20 11M4 13l1.5 4.5A7 7 0 0 0 17.9 15"/></svg>
+        重新整理
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section id="overview" class="market-hero section-rule" aria-labelledby="market-headline">
+      <div class="market-hero-copy">
+        <p id="market-phase" class="phase-label">資料讀取中</p>
+        <h1 id="market-headline">正在整理今日盤勢</h1>
+        <p id="market-summary" class="lead">盤中資料與上一完成盤結構會分開顯示。</p>
+        <p id="market-freshness" class="freshness-note">資料時間確認中</p>
+      </div>
+      <div id="index-strip" class="index-strip" aria-label="今日市場指數"></div>
+    </section>
+
+    <section id="structure" class="market-split section-rule">
+      <div>
+        <div class="section-heading compact">
+          <p class="section-number">1</p>
+          <div><p class="eyebrow">MARKET BREADTH</p><h2>上一完成盤的市場結構</h2></div>
+        </div>
+        <p class="section-note">這組數字不是今日盤中漲跌家數，用來判讀中短期結構是否健康。</p>
+        <div id="breadth-score" class="breadth-score"></div>
+        <div id="breadth-bars" class="bar-list"></div>
+      </div>
+      <div>
+        <div class="section-heading compact">
+          <p class="section-number">2</p>
+          <div><p class="eyebrow">OVERNIGHT</p><h2>開盤前的外部環境</h2></div>
+        </div>
+        <p class="section-note">只作為台股開盤背景；不把美股漲跌直接當成台股預測。</p>
+        <div id="overnight-list" class="overnight-list"></div>
+      </div>
+    </section>
+
+    <section id="sectors" class="section-rule">
+      <div class="section-heading sector-heading">
+        <p class="section-number">3</p>
+        <div><p class="eyebrow">SECTOR STRUCTURE</p><h2>產業 20 日結構排名</h2></div>
+        <div class="filter-group" aria-label="產業篩選">
+          <button class="filter-button active" type="button" data-filter="all">全部</button>
+          <button class="filter-button" type="button" data-filter="strong">結構較強</button>
+          <button class="filter-button" type="button" data-filter="participation">參與較廣</button>
+        </div>
+      </div>
+      <p class="section-note">排名反映上一完成盤的 20 日報酬、相對市場與站上月線比例，不是今日即時類股漲幅。</p>
+      <div class="table-wrap">
+        <table class="sector-table">
+          <thead><tr><th>產業</th><th>20 日</th><th>相對市場</th><th>站上月線</th><th>樣本</th><th>判讀</th></tr></thead>
+          <tbody id="sector-list"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="analysis-grid section-rule">
+      <div>
+        <div class="section-heading compact">
+          <p class="section-number">4</p>
+          <div><p class="eyebrow">PLAIN LANGUAGE</p><h2>今天如何解讀</h2></div>
+        </div>
+        <div id="analysis-list" class="analysis-list"></div>
+      </div>
+      <div>
+        <div class="section-heading compact">
+          <p class="section-number">5</p>
+          <div><p class="eyebrow">WATCHPOINTS</p><h2>避免誤判的三件事</h2></div>
+        </div>
+        <ol id="watchpoint-list" class="watchpoint-list"></ol>
+      </div>
+      <aside>
+        <div class="section-heading compact">
+          <p class="section-number">6</p>
+          <div><p class="eyebrow">SOURCES</p><h2>資料來源與限制</h2></div>
+        </div>
+        <div id="source-list" class="source-list"></div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>正常情況每 5 分鐘重建市場摘要。本頁不是即時交易資訊服務，也不提供個股買賣指令；更新可能受官方來源與 GitHub 排程延遲影響。</footer>
+  <noscript><p class="noscript">請啟用 JavaScript 讀取今日盤勢資料。</p></noscript>
+  <script src="data/market-data.js"></script>
+  <script src="market.js"></script>
+</body>
+</html>

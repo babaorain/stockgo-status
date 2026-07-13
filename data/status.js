@@ -1,6 +1,6 @@
 window.STOCKGO_STATUS = {
   "schema_version": 1,
-  "generated_at": "2026-07-13T08:35:14+08:00",
+  "generated_at": "2026-07-13T09:00:44+08:00",
   "timezone": "台北標準時間",
   "headline": "資料建置中，尚未開放交易",
   "summary": "正式庫負責日常研究；P2 只保存前瞻驗證證據。所有交易功能維持停用。",

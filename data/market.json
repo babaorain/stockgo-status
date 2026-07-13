@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-13T09:00:47+08:00",
+  "timezone": "Asia/Taipei",
+  "phase": {
+    "key": "intraday",
+    "label": "盤中"
+  },
+  "headline": "盤中：指數偏正向，結構仍偏保守",
+  "summary": "盤中指數反映今天已成交的變化；市場廣度與產業資料仍是上一完成盤，兩者分開判讀。",
+  "quote_state": "current",
+  "quote_error": null,
+  "indices": [
+    {
+      "market": "tse",
+      "name": "加權指數",
+      "date": "20260713",
+      "quote_at": "2026-07-13T09:00:35+08:00",
+      "reference": 45354.61,
+      "value": 46069.06,
+      "change_pct": 0.01575253320445258,
+      "volume": null
+    },
+    {
+      "market": "otc",
+      "name": "櫃買指數",
+      "date": "20260713",
+      "quote_at": "2026-07-13T09:00:25+08:00",
+      "reference": 424.99,
+      "value": 435.2,
+      "change_pct": 0.024024094684580666,
+      "volume": null
+    }
+  ],
+  "latest_completed_session": "2026-07-09",
+  "prior_session": {
+    "date": "2026-07-09",
+    "large_cap_proxy_return": -0.0023573785950024018
+  },
+  "breadth": {
+    "date": "2026-07-09",
+    "sample_size": 1939,
+    "score": 50,
+    "status": "偏弱",
+    "above_ma20": 0.4234141309953584,
+    "above_ma60": 0.5286230015471892,
+    "beat_market_rate": 0.2743682310469314,
+    "average_return_20d": 0.034415652472799915,
+    "average_relative_20d": -0.019646815294781707
+  },
+  "sectors": [
+    {
+      "name": "被動元件",
+      "sample_size": 5,
+      "return_20d": 0.22693212750026662,
+      "relative_20d": 0.17157053149029147,
+      "above_ma20": 0.2,
+      "status": "弱"
+    },
+    {
+      "name": "半導體封測",
+      "sample_size": 11,
+      "return_20d": 0.21392826100713078,
+      "relative_20d": 0.1585666649971556,
+      "above_ma20": 0.5454545454545454,
+      "status": "中"
+    },
+    {
+      "name": "IC 設計",
+      "sample_size": 12,
+      "return_20d": 0.13467106203625462,
+      "relative_20d": 0.07930946602627947,
+      "above_ma20": 0.3333333333333333,
+      "status": "弱"
+    },
+    {
+      "name": "PCB",
+      "sample_size": 13,
+      "return_20d": 0.11554717337561947,
+      "relative_20d": 0.060185577365644324,
+      "above_ma20": 0.38461538461538464,
+      "status": "弱"
+    },
+    {
+      "name": "半導體業",
+      "sample_size": 119,
+      "return_20d": 0.10289938402273509,
+      "relative_20d": 0.047524498425086985,
+      "above_ma20": 0.35294117647058826,
+      "status": "弱"
+    },
+    {
+      "name": "金融",
+      "sample_size": 11,
+      "return_20d": 0.10230880494328908,
+      "relative_20d": 0.04694720893331394,
+      "above_ma20": 0.7272727272727273,
+      "status": "強"
+    },
+    {
+      "name": "電器電纜",
+      "sample_size": 16,
+      "return_20d": 0.1013999710583332,
+      "relative_20d": 0.04603837504835805,
+      "above_ma20": 0.5625,
+      "status": "強"
+    },
+    {
+      "name": "化學生技醫療",
+      "sample_size": 31,
+      "return_20d": 0.08990341372740038,
+      "relative_20d": 0.034541817717425226,
+      "above_ma20": 0.45161290322580644,
+      "status": "中"
+    },
+    {
+      "name": "化學工業",
+      "sample_size": 19,
+      "return_20d": 0.0716470579965679,
+      "relative_20d": 0.016670620411663527,
+      "above_ma20": 0.42105263157894735,
+      "status": "弱"
+    },
+    {
+      "name": "航運業",
+      "sample_size": 30,
+      "return_20d": 0.06351158576188946,
+      "relative_20d": 0.009467291792061199,
+      "above_ma20": 0.6666666666666666,
+      "status": "強"
+    }
+  ],
+  "overnight": [
+    {
+      "key": "IXIC",
+      "name": "NASDAQ 綜合指數",
+      "date": "2026-07-10",
+      "return": 0.00285111084215095
+    },
+    {
+      "key": "SOX",
+      "name": "費城半導體指數",
+      "date": "2026-07-10",
+      "return": 0.0005524811921295836
+    },
+    {
+      "key": "TSM",
+      "name": "台積電 ADR",
+      "date": "2026-07-10",
+      "return": -0.006522350236288443
+    }
+  ],
+  "overnight_score": -5.796471604654365e-05,
+  "analysis": [
+    {
+      "title": "隔夜環境",
+      "tone": "neutral",
+      "text": "SOX、NASDAQ 與台積電 ADR 的加權訊號為中性；它只描述開盤前背景，不代表台股一定同方向。"
+    },
+    {
+      "title": "市場結構",
+      "tone": "negative",
+      "text": "上一完成盤廣度 50/100，42% 樣本在 20 日線上；這是中短期結構，不是今日盤中漲跌家數。"
+    },
+    {
+      "title": "今日指數",
+      "tone": "positive",
+      "text": "加權指數目前 +1.58%。櫃買相對加權差 +0.83%，可用來觀察中小型股是否同步。"
+    }
+  ],
+  "watchpoints": [
+    "盤中只用指數判讀今天方向；上一盤廣度不能冒充今日漲跌家數。",
+    "若加權與櫃買方向分歧，先視為市場參與不一致，不追逐單一指數。",
+    "產業排名是 20 日結構，需等正式收盤資料更新後才能確認是否延續。"
+  ],
+  "sources": [
+    {
+      "name": "StockGO 正式庫彙總",
+      "freshness": "2026-07-09",
+      "note": "上一完成盤的市場廣度、產業結構與隔夜市場資料。"
+    },
+    {
+      "name": "臺灣證券交易所市場資訊",
+      "url": "https://www.twse.com.tw/zh/products/information/information.html",
+      "note": "盤中只發布兩個市場指數的彙總變化，不發布逐筆或個股行情。"
+    },
+    {
+      "name": "臺灣證券交易所交易制度",
+      "url": "https://www.twse.com.tw/zh/products/system/trading.html",
+      "note": "一般交易撮合時間為 09:00–13:30。"
+    }
+  ],
+  "safety": {
+    "live_trading": false,
+    "individual_stocks": false,
+    "advice": false
+  }
+}
