@@ -5,25 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'">
-  <meta name="description" content="StockGO 今日台股盤勢、隔夜環境與上一完成盤結構分析。">
-  <title>StockGO 今日盤勢</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="market.css">
+  <meta name="description" content="StockGO v5強勢拉回前瞻訊號、模擬進場、5/20日結果與風險排除。">
+  <title>StockGO 今日決策盤勢</title>
+  <link rel="stylesheet" href="styles.css?v=paper-ledger-20260715">
+  <link rel="stylesheet" href="market.css?v=exposure-gate-v1-20260719">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="回到系統總覽">StockGO <span>今日盤勢</span></a>
+    <a class="brand" href="index.html" aria-label="回到系統總覽">StockGO <span>今日決策盤勢</span></a>
     <nav aria-label="頁面導覽">
-      <a href="index.html">系統狀態</a>
-      <a class="active" href="#overview">今日盤勢</a>
-      <a href="#structure">市場結構</a>
-      <a href="#sectors">產業</a>
+      <a href="#exposure">0050 實驗</a>
+      <a href="#candidates">前瞻訊號</a>
+      <a href="#ai-groups">AI 對照組</a>
+      <a href="#avoids">明確避免</a>
+      <a href="#evidence">研究證據</a>
+      <a href="#structure">市場背景</a>
     </nav>
     <div class="header-meta">
       <a class="page-link" href="index.html">系統狀態</a>
       <span id="market-updated-at">最後更新：讀取中</span>
-      <button id="market-reload" type="button" aria-label="重新整理今日盤勢">
+      <button id="market-reload" type="button" aria-label="重新整理今日決策盤勢">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5M6.1 9A7 7 0 0 1 18.5 6.5L20 11M4 13l1.5 4.5A7 7 0 0 0 17.9 15"/></svg>
         重新整理
       </button>
@@ -31,47 +36,134 @@
   </header>
 
   <main id="top">
-    <section id="overview" class="market-hero section-rule" aria-labelledby="market-headline">
-      <div class="market-hero-copy">
+    <section id="overview" class="decision-hero section-rule" aria-labelledby="market-headline">
+      <div class="decision-lead">
         <p id="market-phase" class="phase-label">資料讀取中</p>
-        <h1 id="market-headline">正在整理今日盤勢</h1>
-        <p id="market-summary" class="lead">盤中資料與上一完成盤結構會分開顯示。</p>
+        <h1 id="market-headline">正在整理今天的優勢與風險</h1>
+        <p id="market-summary" class="lead">不是只看大盤，而是把正式庫候選逐一套用盤中確認與風險排除。</p>
         <p id="market-freshness" class="freshness-note">資料時間確認中</p>
       </div>
-      <div id="index-strip" class="index-strip" aria-label="今日市場指數"></div>
+      <div id="decision-strip" class="decision-strip" aria-label="今日決策摘要"></div>
     </section>
 
-    <section id="structure" class="market-split section-rule">
-      <div>
-        <div class="section-heading compact">
-          <p class="section-number">1</p>
-          <div><p class="eyebrow">MARKET BREADTH</p><h2>上一完成盤的市場結構</h2></div>
+    <section id="exposure" class="exposure-section section-rule" aria-labelledby="exposure-title">
+      <div class="section-heading exposure-heading">
+        <p class="section-number">主</p>
+        <div>
+          <p class="eyebrow">LOCKED 0050 + CASH EXPERIMENT</p>
+          <h2 id="exposure-title">0050＋現金：先證明有效，才准往前</h2>
         </div>
-        <p class="section-note">這組數字不是今日盤中漲跌家數，用來判讀中短期結構是否健康。</p>
-        <div id="breadth-score" class="breadth-score"></div>
-        <div id="breadth-bars" class="bar-list"></div>
       </div>
-      <div>
-        <div class="section-heading compact">
-          <p class="section-number">2</p>
-          <div><p class="eyebrow">OVERNIGHT</p><h2>開盤前的外部環境</h2></div>
+      <div id="exposure-gate" class="exposure-gate" aria-live="polite"></div>
+      <div id="exposure-cards" class="exposure-card-grid"></div>
+      <p class="section-note exposure-disclosure">這是紙上研究，不會自動下單。0050 與 2330 使用完全相同的 0050 訊號；2330 只做描述性對照，不能拿來救援主實驗。所有歷史績效同起訖、隔日開盤、含公司行動再投資、扣交易成本，並在終點扣除假設賣出成本。</p>
+    </section>
+
+    <section id="candidates" class="section-rule">
+      <div class="section-heading decision-heading">
+        <p class="section-number">1</p>
+        <div>
+          <p class="eyebrow">RESEARCH EDGE × LIVE CHECK</p>
+          <h2>今日新訊號：模型當時真的選了什麼</h2>
         </div>
-        <p class="section-note">只作為台股開盤背景；不把美股漲跌直接當成台股預測。</p>
-        <div id="overnight-list" class="overnight-list"></div>
+        <div class="filter-group" aria-label="候選分類篩選">
+          <button class="candidate-filter active" type="button" data-filter="all">全部</button>
+          <button class="candidate-filter" type="button" data-filter="watch">可觀察</button>
+          <button class="candidate-filter" type="button" data-filter="no_chase">已漲多</button>
+          <button class="candidate-filter" type="button" data-filter="weakening">轉弱／排除</button>
+        </div>
+      </div>
+      <div id="experiment-status" class="experiment-status" aria-live="polite"></div>
+      <p class="section-note decision-note">只顯示已寫入P2不可變帳本的v5訊號。固定門檻為：20日漲幅2%～20%、距月線-3%～+5%、合理波動與量能、營收年增為正；收盤後選出，隔日開盤模擬買入。</p>
+      <div class="table-wrap decision-table-wrap">
+        <table class="decision-table">
+          <thead><tr><th>凍結排序／標的</th><th>現在狀態</th><th>盤中參考</th><th>模擬買入後績效</th><th>訊號日條件</th><th>20日相對0050（訊號日）</th><th>營收年增</th><th>主要風險</th></tr></thead>
+          <tbody id="candidate-list"></tbody>
+        </table>
+      </div>
+      <div id="candidate-cards" class="mobile-decision-list"></div>
+      <div class="experiment-ledger-grid">
+        <article><div class="ledger-heading"><p class="eyebrow">OPEN OBSERVATIONS</p><h3>等待進場／觀察中</h3></div><div id="experiment-open" class="ledger-list"></div></article>
+        <article><div class="ledger-heading"><p class="eyebrow">SETTLED RESULTS</p><h3>已到期結果</h3></div><div id="experiment-results" class="ledger-list"></div></article>
+      </div>
+    </section>
+
+    <section id="ai-groups" class="section-rule">
+      <div class="section-heading">
+        <p class="section-number">AI</p>
+        <div><p class="eyebrow">ISOLATED PAPER CHALLENGERS</p><h2>AI 對照組：資料庫組與純網路組</h2></div>
+      </div>
+      <p class="section-note">兩組在不同 Codex 任務中獨立選股；名單先凍結，才由 P2 用相同隔日開盤、0.75% 成本、5/20 日與 0050 統一結算。尚未到期時不顯示勝率。</p>
+      <div id="ai-group-list" class="ai-group-grid"></div>
+    </section>
+
+    <section id="avoids" class="section-rule avoid-section">
+      <div class="section-heading">
+        <p class="section-number">2</p>
+        <div><p class="eyebrow">RISK OVERLAY</p><h2>明確避免：反彈也不代表結構修復</h2></div>
+      </div>
+      <p class="section-note">這些標的未通過市場、族群、技術或基本面門檻；頁面同時顯示今日漲跌，避免把單日反彈誤認成模型翻多。</p>
+      <div class="table-wrap decision-table-wrap">
+        <table class="decision-table avoid-table">
+          <thead><tr><th>標的</th><th>今日盤中</th><th>模型判斷</th><th>20日相對0050</th><th>未通過項目</th><th>歷史基準</th></tr></thead>
+          <tbody id="avoid-list"></tbody>
+        </table>
+      </div>
+      <div id="avoid-cards" class="mobile-decision-list"></div>
+    </section>
+
+    <section id="evidence" class="section-rule">
+      <div class="section-heading">
+        <p class="section-number">3</p>
+        <div><p class="eyebrow">WHAT THE RESEARCH ACTUALLY PROVES</p><h2>研究證據：避開規則目前強於買進規則</h2></div>
+      </div>
+      <div id="research-state" class="research-state"></div>
+      <p class="section-note evidence-note">以下均為近五年歷史樣本；「平均超額」是相對 0050，同時保留勝率與贏過 0050 比例，避免只挑好看的平均報酬。</p>
+      <div class="table-wrap evidence-table-wrap">
+        <table class="evidence-table">
+          <thead><tr><th>規則</th><th>用途</th><th>觀察期</th><th>上漲率</th><th>平均報酬</th><th>平均超額</th><th>贏0050</th><th>樣本</th></tr></thead>
+          <tbody id="rule-list"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="structure" class="market-context section-rule">
+      <div class="section-heading">
+        <p class="section-number">4</p>
+        <div><p class="eyebrow">MARKET CONTEXT — SECONDARY</p><h2>市場背景：用來調整風險，不代替選股</h2></div>
+      </div>
+      <div class="context-grid">
+        <div>
+          <h3>今日指數</h3>
+          <div id="index-strip" class="index-strip" aria-label="今日市場指數"></div>
+        </div>
+        <div>
+          <h3>上一完成盤市場廣度</h3>
+          <div id="breadth-score" class="breadth-score"></div>
+          <div id="breadth-bars" class="bar-list"></div>
+        </div>
+        <div>
+          <h3>隔夜環境</h3>
+          <div id="overnight-list" class="overnight-list"></div>
+        </div>
+        <div class="risk-context">
+          <h3>前瞻市場風險觀察</h3>
+          <div id="risk-observation" class="risk-observation"></div>
+        </div>
       </div>
     </section>
 
     <section id="sectors" class="section-rule">
       <div class="section-heading sector-heading">
-        <p class="section-number">3</p>
-        <div><p class="eyebrow">SECTOR STRUCTURE</p><h2>產業 20 日結構排名</h2></div>
+        <p class="section-number">5</p>
+        <div><p class="eyebrow">SECTOR STRUCTURE</p><h2>產業結構：優勢是否有族群支撐</h2></div>
         <div class="filter-group" aria-label="產業篩選">
           <button class="filter-button active" type="button" data-filter="all">全部</button>
           <button class="filter-button" type="button" data-filter="strong">結構較強</button>
           <button class="filter-button" type="button" data-filter="participation">參與較廣</button>
         </div>
       </div>
-      <p class="section-note">排名反映上一完成盤的 20 日報酬、相對市場與站上月線比例，不是今日即時類股漲幅。</p>
+      <p class="section-note">產業排名是最近完成盤的 20 日結構；個股若很強但族群弱，仍會列為風險而非加分。</p>
       <div class="table-wrap">
         <table class="sector-table">
           <thead><tr><th>產業</th><th>20 日</th><th>相對市場</th><th>站上月線</th><th>樣本</th><th>判讀</th></tr></thead>
@@ -82,32 +174,19 @@
 
     <section class="analysis-grid section-rule">
       <div>
-        <div class="section-heading compact">
-          <p class="section-number">4</p>
-          <div><p class="eyebrow">PLAIN LANGUAGE</p><h2>今天如何解讀</h2></div>
-        </div>
-        <div id="analysis-list" class="analysis-list"></div>
-      </div>
-      <div>
-        <div class="section-heading compact">
-          <p class="section-number">5</p>
-          <div><p class="eyebrow">WATCHPOINTS</p><h2>避免誤判的三件事</h2></div>
-        </div>
+        <div class="section-heading compact"><p class="section-number">6</p><div><p class="eyebrow">READ THIS FIRST</p><h2>三條使用原則</h2></div></div>
         <ol id="watchpoint-list" class="watchpoint-list"></ol>
       </div>
       <aside>
-        <div class="section-heading compact">
-          <p class="section-number">6</p>
-          <div><p class="eyebrow">SOURCES</p><h2>資料來源與限制</h2></div>
-        </div>
+        <div class="section-heading compact"><p class="section-number">7</p><div><p class="eyebrow">SOURCES</p><h2>資料來源與限制</h2></div></div>
         <div id="source-list" class="source-list"></div>
       </aside>
     </section>
   </main>
 
-  <footer>正常情況每 5 分鐘重建市場摘要。本頁不是即時交易資訊服務，也不提供個股買賣指令；更新可能受官方來源與 GitHub 排程延遲影響。</footer>
-  <noscript><p class="noscript">請啟用 JavaScript 讀取今日盤勢資料。</p></noscript>
-  <script src="data/market-data.js"></script>
-  <script src="market.js"></script>
+  <footer>每 5 分鐘重建盤中參考。這是研究排序與風險排除頁，不是自動交易、正式投資建議或逐筆即時行情服務。</footer>
+  <noscript><p class="noscript">請啟用 JavaScript 讀取今日決策盤勢。</p></noscript>
+  <script src="data/market-data.js?v=7efe8e584dd9"></script>
+  <script src="market.js?v=exposure-gate-v1-20260719"></script>
 </body>
 </html>
