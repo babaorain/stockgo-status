@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'">
+  <meta name="description" content="StockGO 資料、驗證與排程狀態總覽。">
+  <title>StockGO 系統總覽</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="回到頂端">StockGO <span>系統總覽</span></a>
+    <nav aria-label="頁面導覽">
+      <a class="active" href="#overview">總覽</a>
+      <a href="#data">資料</a>
+      <a href="#validation">驗證進度</a>
+      <a href="#schedule">排程</a>
+    </nav>
+    <div class="header-meta">
+      <span id="updated-at">最後更新：讀取中</span>
+      <button id="reload" type="button" aria-label="重新整理頁面">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5M6.1 9A7 7 0 0 1 18.5 6.5L20 11M4 13l1.5 4.5A7 7 0 0 0 17.9 15"/></svg>
+        重新整理
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section id="overview" class="hero section-rule" aria-labelledby="headline">
+      <div class="hero-copy">
+        <p class="section-number">1</p>
+        <div>
+          <p class="eyebrow">CURRENT STATUS</p>
+          <h1 id="headline">資料讀取中</h1>
+          <p id="summary" class="lead">正在整理正式庫與 P2 驗證庫狀態。</p>
+        </div>
+      </div>
+      <ol id="stage-summary" class="stage-summary" aria-label="三階段進度"></ol>
+    </section>
+
+    <section id="data" class="section-rule">
+      <div class="section-heading">
+        <p class="section-number">2</p>
+        <div><p class="eyebrow">DATABASES</p><h2>兩個資料庫，各自做什麼</h2></div>
+      </div>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead><tr><th>比較項目</th><th>正式庫 <code>stockgo.sqlite</code></th><th>P2 <code>stockgo.p2.sqlite</code></th></tr></thead>
+          <tbody id="database-comparison"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="split section-rule">
+      <div>
+        <div class="section-heading compact">
+          <p class="section-number">3</p>
+          <div><p class="eyebrow">FRESHNESS</p><h2>正式庫資料新鮮度</h2></div>
+        </div>
+        <div id="freshness-list" class="freshness-list"></div>
+      </div>
+      <div id="validation">
+        <div class="section-heading compact">
+          <p class="section-number">4</p>
+          <div><p class="eyebrow">VALIDATION</p><h2>驗證進度</h2></div>
+        </div>
+        <ol id="validation-path" class="validation-path"></ol>
+        <div id="evidence-metrics" class="evidence-metrics"></div>
+      </div>
+    </section>
+
+    <section class="bottom-grid section-rule">
+      <div id="schedule">
+        <div class="section-heading compact">
+          <p class="section-number">5</p>
+          <div><p class="eyebrow">OPERATIONS</p><h2>已排程任務</h2></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>任務</th><th>時間</th><th>最近結果</th><th>完成時間</th></tr></thead>
+            <tbody id="operation-list"></tbody>
+          </table>
+        </div>
+        <p class="table-note">所有時間皆為台灣時間（UTC+8）。</p>
+      </div>
+      <div>
+        <div class="section-heading compact">
+          <p class="section-number">6</p>
+          <div><p class="eyebrow">NEXT</p><h2>接下來要做什麼</h2></div>
+        </div>
+        <ol id="next-actions" class="next-actions"></ol>
+      </div>
+      <aside>
+        <div class="section-heading compact">
+          <p class="section-number">7</p>
+          <div><p class="eyebrow">GUIDE</p><h2>說明與約定</h2></div>
+        </div>
+        <details><summary>兩個資料庫會自動什麼？</summary><p>正式庫做研究與報告；P2 只記錄當下可知的前瞻證據，兩者不互相覆蓋。</p></details>
+        <details><summary>為什麼現在不能交易？</summary><p>資料完整不等於策略有效。還必須完成前瞻證據、研究試驗、模擬券商與人工審查。</p></details>
+        <details><summary>「重新整理」做了什麼？</summary><p>只重新載入已公開的靜態狀態，不會執行資料庫更新或下單。</p></details>
+        <details><summary>公開頁面包含什麼？</summary><p id="public-policy">只包含彙總狀態；不公開資料庫、憑證、持倉或策略參數。</p></details>
+      </aside>
+    </section>
+  </main>
+
+  <footer>本系統為研究與驗證用途，尚未開放任何交易功能。資料狀態僅供維運檢查。</footer>
+  <noscript><p class="noscript">請啟用 JavaScript 以顯示狀態資料。</p></noscript>
+  <script src="data/status.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

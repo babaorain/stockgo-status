@@ -1,0 +1,225 @@
+window.STOCKGO_STATUS = {
+  "schema_version": 1,
+  "generated_at": "2026-07-13T08:35:14+08:00",
+  "timezone": "台北標準時間",
+  "headline": "資料建置中，尚未開放交易",
+  "summary": "正式庫負責日常研究；P2 只保存前瞻驗證證據。所有交易功能維持停用。",
+  "formal": {
+    "file": "stockgo.sqlite",
+    "role": "日常研究主庫；所有研究報告、特徵與模型檢查以此為準。",
+    "latest_market_date": "2026-07-09",
+    "expected_market_date": "2026-07-09",
+    "market_session_lag": 0,
+    "missing_market_dates": [],
+    "status": "current",
+    "blockers": [],
+    "datasets": [
+      {
+        "key": "prices",
+        "label": "台股行情",
+        "date": "2026-07-09",
+        "rows": 2220134,
+        "status": "current",
+        "note": "正式庫的收盤行情基準",
+        "expected_date": "2026-07-09"
+      },
+      {
+        "key": "features",
+        "label": "Features",
+        "date": "2026-07-09",
+        "rows": 2076955,
+        "status": "current",
+        "note": "研究與模型使用的衍生特徵",
+        "expected_date": "2026-07-09"
+      },
+      {
+        "key": "universe",
+        "label": "歷史股票池",
+        "date": "2026-07-09",
+        "rows": 2210908,
+        "status": "current",
+        "note": "避免存活者偏差的每日股票池",
+        "expected_date": "2026-07-09"
+      },
+      {
+        "key": "labels",
+        "label": "v2 Labels（20 日）",
+        "date": "2026-06-10",
+        "rows": 2011185,
+        "status": "current",
+        "note": "到期後才能產生，日期自然落後行情",
+        "expected_date": "2026-06-10"
+      },
+      {
+        "key": "legal",
+        "label": "三大法人",
+        "date": "2026-07-09",
+        "rows": 1509044,
+        "status": "current",
+        "note": "法人買賣超資料",
+        "expected_date": "2026-07-09"
+      },
+      {
+        "key": "margin",
+        "label": "融資融券",
+        "date": "2026-07-09",
+        "rows": 1066923,
+        "status": "current",
+        "note": "信用交易餘額",
+        "expected_date": "2026-07-09"
+      },
+      {
+        "key": "futures",
+        "label": "期貨未平倉",
+        "date": "2026-07-09",
+        "rows": 5913,
+        "status": "current",
+        "note": "TAIFEX 外資未平倉",
+        "expected_date": "2026-07-09"
+      },
+      {
+        "key": "macro",
+        "label": "美股與 SOX",
+        "date": "2026-07-10",
+        "rows": 7569,
+        "status": "current",
+        "note": "隔夜市場環境",
+        "expected_date": "2026-07-09"
+      },
+      {
+        "key": "revenue",
+        "label": "月營收",
+        "date": "2026-07-12",
+        "rows": 56690,
+        "status": "current",
+        "note": "依公司公告週期更新"
+      },
+      {
+        "key": "financial",
+        "label": "財報品質",
+        "date": "2026-05-15",
+        "rows": 18819,
+        "status": "current",
+        "note": "依季報公告週期更新"
+      }
+    ]
+  },
+  "p2": {
+    "file": "stockgo.p2.sqlite",
+    "role": "前瞻驗證證據庫；只保存當時可知資料與不可竄改的驗證紀錄。",
+    "latest_market_date": "2026-07-09",
+    "status": "collecting",
+    "blockers": [
+      "目前策略版本尚無前瞻 paper 證據",
+      "已登記研究尚無完成結果",
+      "模擬券商尚無對帳證據"
+    ],
+    "metrics": {
+      "paper_total": 834,
+      "paper_current_protocol": 0,
+      "paper_settled": 256,
+      "paper_pending": 578,
+      "forecast_rows": 2203,
+      "dataset_snapshots": 1,
+      "trial_plans": 1,
+      "trial_results": 0,
+      "broker_campaigns": 0,
+      "broker_sessions": 0,
+      "broker_orders": 0,
+      "broker_events": 0,
+      "broker_reconciliations": 0,
+      "review_packets": 0,
+      "review_decisions": 0,
+      "live_enabled_rows": 0
+    }
+  },
+  "stages": [
+    {
+      "name": "資料健康",
+      "status": "complete",
+      "description": "正式庫行情、特徵、股票池與標籤保持一致。"
+    },
+    {
+      "name": "前瞻證據",
+      "status": "in_progress",
+      "description": "依時間順序累積 paper 與研究試驗證據。"
+    },
+    {
+      "name": "交易準備",
+      "status": "waiting",
+      "description": "模擬券商、影子投組與人工審查全部通過後才評估。"
+    }
+  ],
+  "operations": [
+    {
+      "key": "morning",
+      "name": "Morning",
+      "schedule": "每日 07:00",
+      "purpose": "盤前資料與研究狀態整理",
+      "status": "success",
+      "started_at": "2026-07-13T08:20:39.1712873+08:00",
+      "finished_at": "2026-07-13T08:25:25.2377014+08:00",
+      "duration_seconds": 286.1,
+      "error": null,
+      "log": "20260713-082039-morning.log"
+    },
+    {
+      "key": "evening",
+      "name": "Evening",
+      "schedule": "每日 18:30",
+      "purpose": "正式庫收盤資料補齊與完整性檢查",
+      "status": "success",
+      "started_at": "2026-07-12T16:28:12.7396162+08:00",
+      "finished_at": "2026-07-13T05:21:25.6324516+08:00",
+      "duration_seconds": 46392.9,
+      "error": null,
+      "log": "20260712-162812-evening.log"
+    },
+    {
+      "key": "paper",
+      "name": "Paper",
+      "schedule": "每日 19:30",
+      "purpose": "P2 前瞻證據收集與保存",
+      "status": "not_run",
+      "started_at": null,
+      "finished_at": null,
+      "duration_seconds": null,
+      "error": null,
+      "log": null
+    },
+    {
+      "key": "watchdog",
+      "name": "Watchdog",
+      "schedule": "每日 20:30",
+      "purpose": "排程漏跑、失敗與資料延遲檢查",
+      "status": "not_run",
+      "started_at": null,
+      "finished_at": null,
+      "duration_seconds": null,
+      "error": null,
+      "log": null
+    }
+  ],
+  "actions": [
+    {
+      "title": "累積目前版本證據",
+      "detail": "維持每日 P2 排程，證據只能隨市場日逐日增加。"
+    },
+    {
+      "title": "完成已登記研究試驗",
+      "detail": "使用凍結資料快照執行並保存結果，避免事後改規則。"
+    },
+    {
+      "title": "建立模擬券商對帳",
+      "detail": "研究證據足夠後，驗證委託、成交、成本與現金部位。"
+    },
+    {
+      "title": "保留人工審查關卡",
+      "detail": "所有機械驗證完成後才建立審查封包；目前不可開放交易。"
+    }
+  ],
+  "safety": {
+    "live_trading": false,
+    "public_data_policy": "只發布彙總狀態，不包含資料庫、token、持倉、個股清單或策略參數。"
+  }
+};
